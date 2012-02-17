@@ -7,7 +7,7 @@
 
 #include "capture.h"
 
-
+//teste para ver se ta funcionando o commit
 
 
 
