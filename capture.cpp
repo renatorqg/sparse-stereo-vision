@@ -692,7 +692,8 @@ usage                           (FILE *                 fp,
                  "-m | --mmap          Use memory mapped buffers\n"
                  "-r | --read          Use read() calls\n"
                  "-u | --userp         Use application allocated buffers\n"
-                 "-c | --calibra       Calibrate Stereo Cameras by default stored images\n",
+                 "-c | --calibra       Calibrate Stereo Cameras by default stored images\n"
+		 "-a | --no_card_cap   Process the images previously recorded\n"
 		 "-z | --calib_my_list Calibrate Stereo Cameras by user list of images\n",
 		 argv[0]);
 }

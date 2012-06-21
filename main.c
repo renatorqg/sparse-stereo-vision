@@ -36,10 +36,14 @@ main                            (int                    argc,
 	IplImage* s_img = cvCreateImage(size,IPL_DEPTH_8U,1);
 	IplImage* s_img2 = cvCreateImage(size,IPL_DEPTH_8U,1);
 	int camId=0;
-	
+
+	//variáveis para o modo "no_card_cap
+	bool no_card_cap_FLAG = 0;
+	int count_here = 0;
+
 	//VARIÁVEL DE CONTROLE PARA APRESENTAÇÃO
 
-	static const char short_options [] = "dz:hmruc";
+	static const char short_options [] = "dz:hmruca";
 	static const struct option
 		long_options [] = {
 			{ "device",     required_argument,      NULL,           'd' },
@@ -49,6 +53,7 @@ main                            (int                    argc,
 			{ "userp",      no_argument,            NULL,           'u' },
 			{ "calibra",	no_argument,		NULL,		'c' },
 			{ "calib_my_list", required_argument,   NULL,		'z' },
+			{ "no_card_cap",no_argument,		NULL,		'a' },
 			{ 0, 0, 0, 0 }
 		};        
 
@@ -66,6 +71,10 @@ main                            (int                    argc,
                 switch (c) {
                 case 0: /* getopt_long() flag */
                         break;
+		
+		case 'a':
+			no_card_cap_FLAG = 1;
+			break;
 
                 case 'd':
                         dev_name = optarg;
@@ -100,12 +109,15 @@ main                            (int                    argc,
                         exit (EXIT_FAILURE);
                 }
         }
-	
-	open_device (dev_name,fd);
 
-	buffers = init_device (size,dev_name,io,fd,buffers,n_buffers);
+	if (!no_card_cap_FLAG)
+	{
+		open_device (dev_name,fd);
 
-	start_capturing (io,fd,buffers,n_buffers);
+		buffers = init_device (size,dev_name,io,fd,buffers,n_buffers);
+
+		start_capturing (io,fd,buffers,n_buffers);
+	}
 	
 	char c;	
 	int frames = 0;
@@ -132,7 +144,26 @@ main                            (int                    argc,
 	for(;;)
 	{
 //		cout << "aqui" << endl;
-		getIplImage ( &s_img, &s_img2, io, fd, buffers, n_buffers, camId );
+		if(!no_card_cap_FLAG)
+		{
+			getIplImage ( &s_img, &s_img2, io, fd, buffers, n_buffers, camId );
+		}
+		else
+		{
+			//padrão definido agora: camId = 0 DIREITA
+			//			 camId = 1 ESQUERDA
+			static char filename[255];
+			camId = 0;
+			sprintf(filename,"../data/teste/t%i_%i.jpg",camId,count_here);
+			s_img = cvLoadImage (filename,CV_LOAD_IMAGE_GRAYSCALE);
+			if(!s_img){cout << "fim dos frames\npressione ESC para sair\n" << endl;}
+			camId = 1;
+			sprintf(filename,"../data/teste/t%i_%i.jpg",camId,count_here);
+			s_img2 = cvLoadImage (filename,CV_LOAD_IMAGE_GRAYSCALE);
+			if(!s_img2){cout << "fim dos frames\npressione ESC para sair\n" << endl;}
+			count_here += 1;
+
+		}
 //		cout << "aqui1" << endl;
 		
 		if (!apresenta)
