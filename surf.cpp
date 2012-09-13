@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <vector>
-
+#include <stdio.h>
 #include "surf.h"
 
 using namespace std;
