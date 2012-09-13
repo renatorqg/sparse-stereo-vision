@@ -69,7 +69,7 @@ grava_imagem(IplImage * tmp_img, int& camId)
 	static int count,flag;
 	if(flag == 1) {count=0; flag=0;}
 	static char filename[255];
-	sprintf(filename,"../data/teste/t%i_%i.jpg",camId,count);
+	sprintf(filename,"./data/teste/t%i_%i.jpg",camId,count);
 	cvSaveImage(filename,tmp_img,0);
 	cout << filename << " saved!!" << endl;
 	if(camId) count++;
@@ -86,21 +86,21 @@ grava_imagem_calibragem(IplImage* tmp_img, IplImage* tmp_img2, int count )
 	FILE* list_calib;
 	if(count == 0)
 	{
-		list_calib = fopen("../data/stereo_calib_m.txt","w");
+		list_calib = fopen("./data/stereo_calib_m.txt","w");
 		fputs("11 7\n",list_calib);
 	}
 	else
-		list_calib = fopen("../data/stereo_calib_m.txt","a+");
-	sprintf(filename,"../data/img_calib_m/Im_Calib1_%2i.jpg", count);
+		list_calib = fopen("./data/stereo_calib_m.txt","a+");
+	sprintf(filename,"./data/img_calib_m/Im_Calib1_%2i.jpg", count);
 	cvSaveImage(filename,tmp_img,0);
 	cout << filename << " saved!!" << endl;
-	sprintf(filename,"../data/img_calib_m/Im_Calib1_%2i.jpg\n", count);
+	sprintf(filename,"./data/img_calib_m/Im_Calib1_%2i.jpg\n", count);
 	fputs(filename,list_calib);
 	
-	sprintf(filename,"../data/img_calib_m/Im_Calib0_%2i.jpg", count);
+	sprintf(filename,"./data/img_calib_m/Im_Calib0_%2i.jpg", count);
 	cvSaveImage(filename,tmp_img2,0);
 	cout << filename << " saved!!" << endl;
-	sprintf(filename,"../data/img_calib_m/Im_Calib0_%2i.jpg\n", count);
+	sprintf(filename,"./data/img_calib_m/Im_Calib0_%2i.jpg\n", count);
 	fputs(filename,list_calib);
 	
 	fclose(list_calib);
@@ -112,7 +112,7 @@ carrega_imagem_gravada(int& camId, CvSize size)
 	static int count,flag;
 	if(flag == 1) {count=0; flag=0;}
 	static char filename[255];
-	sprintf(filename,"../data/teste/t%i_%i.jpg",camId,count);
+	sprintf(filename,"./data/teste/t%i_%i.jpg",camId,count);
 
 	IplImage* tmp_img = NULL;
 	tmp_img = cvCreateImage(size,IPL_DEPTH_8U,3);
@@ -132,7 +132,7 @@ carrega_imagem_gravada_calib(int& camId, CvSize size)
 	static char filename[255];
 	IplImage* tmp_img = NULL;
 	tmp_img = cvCreateImage(size,IPL_DEPTH_8U,3);
-	sprintf(filename,"../data/img_calib/image%i_%i.jpg",camId,count);
+	sprintf(filename,"./data/img_calib/image%i_%i.jpg",camId,count);
 	tmp_img = cvLoadImage( filename, 0 );
 	if(camId) count++;
 	return tmp_img;

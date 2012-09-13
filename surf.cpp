@@ -200,8 +200,8 @@ locatePlanarObject( const CvSeq* objectKeypoints, const CvSeq* objectDescriptors
 
 void teste_SURF()
 {
-	const char* object_filename = "../data/box.png";
-	const char* scene_filename = "../data/box_in_scene.png";
+	const char* object_filename = "./data/box.png";
+	const char* scene_filename = "./data/box_in_scene.png";
 
 	CvMemStorage* storage = cvCreateMemStorage(0);
 	help();

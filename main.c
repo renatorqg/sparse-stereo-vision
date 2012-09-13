@@ -154,11 +154,11 @@ main                            (int                    argc,
 			//			 camId = 1 ESQUERDA
 			static char filename[255];
 			camId = 0;
-			sprintf(filename,"../data/teste/t%i_%i.jpg",camId,count_here);
+			sprintf(filename,"./data/teste/t%i_%i.jpg",camId,count_here);
 			s_img = cvLoadImage (filename,CV_LOAD_IMAGE_GRAYSCALE);
 			if(!s_img){cout << "fim dos frames\npressione ESC para sair\n" << endl;}
 			camId = 1;
-			sprintf(filename,"../data/teste/t%i_%i.jpg",camId,count_here);
+			sprintf(filename,"./data/teste/t%i_%i.jpg",camId,count_here);
 			s_img2 = cvLoadImage (filename,CV_LOAD_IMAGE_GRAYSCALE);
 			if(!s_img2){cout << "fim dos frames\npressione ESC para sair\n" << endl;}
 			count_here += 1;
