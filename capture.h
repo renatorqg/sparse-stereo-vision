@@ -35,7 +35,7 @@ xioctl                          (int                    ,
                                  void *                 );
 
 extern void
-grava_imagem(IplImage * , int& );
+grava_imagem(IplImage * , IplImage * , int);
 
 extern void
 grava_imagem_calibragem(IplImage* , IplImage*, int );

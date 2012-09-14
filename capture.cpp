@@ -64,15 +64,15 @@ xioctl                          (int                    fd,
 
 
 void
-grava_imagem(IplImage * tmp_img, int& camId)
+grava_imagem(IplImage * tmp_img, IplImage* tmp_img2, int count)
 {
-	static int count,flag;
-	if(flag == 1) {count=0; flag=0;}
 	static char filename[255];
-	sprintf(filename,"./data/teste/t%i_%i.jpg",camId,count);
+	sprintf(filename,"./data/teste/t1_%i.jpg",count);
 	cvSaveImage(filename,tmp_img,0);
 	cout << filename << " saved!!" << endl;
-	if(camId) count++;
+	sprintf(filename,"./data/teste/t0_%i.jpg",count);
+	cvSaveImage(filename,tmp_img2,0);
+	cout << filename << " saved!!" << endl;
 }
 
 void
@@ -96,13 +96,13 @@ grava_imagem_calibragem(IplImage* tmp_img, IplImage* tmp_img2, int count )
 	cout << filename << " saved!!" << endl;
 	sprintf(filename,"./data/img_calib_m/Im_Calib1_%2i.jpg\n", count);
 	fputs(filename,list_calib);
-	
+
 	sprintf(filename,"./data/img_calib_m/Im_Calib0_%2i.jpg", count);
 	cvSaveImage(filename,tmp_img2,0);
 	cout << filename << " saved!!" << endl;
 	sprintf(filename,"./data/img_calib_m/Im_Calib0_%2i.jpg\n", count);
 	fputs(filename,list_calib);
-	
+
 	fclose(list_calib);
 }
 

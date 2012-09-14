@@ -184,6 +184,11 @@ main                            (int                    argc,
 			grava_imagem_calibragem( s_img, s_img2, frames );
 			frames++;
 		}
+		if ( c == 'j' )
+		{
+			grava_imagem( s_img, s_img2, frames );
+			frames++;
+		}
 		if ( c == 'g' )
 		{
 			if(!smooth) smooth = true;
