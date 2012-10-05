@@ -18,7 +18,7 @@ main                            (int                    argc,
 
 //      para calibrar, pergunta se quer usar a calibração padrão ou quer calibrar agora
 //	se for calibrar agora, pergunta se quer tornar essa calibração padrão
-//	StereoCalib("../ref/stereo_calib2.txt", 0);
+//	StereoCalib("./data/stereo_calib_test.txt", 0);
 
 
 
@@ -97,7 +97,7 @@ main                            (int                    argc,
 			break;
 
 		case 'c':
-			StereoCalib("../ref/stereo_calib2.txt", 0);
+			StereoCalib("./data/stereo_calib_test.txt", 0);
 			break;
 		case 'z':
 			cout << optarg << endl;
